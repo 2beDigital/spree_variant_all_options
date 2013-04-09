@@ -26,8 +26,8 @@ Spree::Admin::VariantsController.class_eval do
 
   def remove_all
     @product = Spree::Product.find_by_permalink(params[:product_id])
-
-
+    all_variants_excluding_master = @product.variants
+    all_variants_excluding_master.destroy_all
     redirect_to admin_product_variants_url(@product)
   end
 
