@@ -4,6 +4,7 @@ Spree::Core::Engine.routes.prepend do
       resources :variants do
         collection do
           get :create_all
+          get :remove_all
         end
       end
     end

@@ -22,4 +22,14 @@ Spree::Admin::VariantsController.class_eval do
 
     redirect_to admin_product_variants_url(@product)
   end
+
+
+  def remove_all
+    @product = Spree::Product.find_by_permalink(params[:product_id])
+
+
+    redirect_to admin_product_variants_url(@product)
+  end
+
+
 end
