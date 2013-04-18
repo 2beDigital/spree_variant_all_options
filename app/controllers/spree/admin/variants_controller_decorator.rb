@@ -31,5 +31,23 @@ Spree::Admin::VariantsController.class_eval do
     redirect_to admin_product_variants_url(@product)
   end
 
+  def vprice_all
+    @product = Spree::Product.find_by_permalink(params[:product_id])
+    master_vprices = @product.master.volume_prices
+
+    unless master_vprices.empty?
+      @product.variants.each do |variantnm|
+        if variantnm.volume_prices.empty?
+          master_vprices.each do |vprice|
+            variantnm.volume_prices.create! :amount => vprice.amount, :discount_type => vprice.discount_type,
+                                           :name => vprice.name, :position => vprice.position , :range => vprice.range
+          end
+        end
+      end
+    end
+
+      redirect_to admin_product_variants_url(@product)
+  end
+
 
 end
