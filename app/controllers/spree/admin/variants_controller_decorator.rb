@@ -11,7 +11,11 @@ Spree::Admin::VariantsController.class_eval do
 
     options.each do |ids|
       v = @product.variants.new
-      v.option_value_ids = ids.flatten
+      if ids.kind_of?(Array)
+        v.option_value_ids = ids.flatten
+      else
+        v.option_value_ids = ids
+      end
       v.price = @product.price
       v.weight = @product.weight
       v.height = @product.height
