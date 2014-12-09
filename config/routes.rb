@@ -1,4 +1,4 @@
-Spree::Core::Engine.routes.prepend do
+Spree::Core::Engine.add_routes do
   namespace :admin do
     resources :products do
       resources :variants do
@@ -10,6 +10,8 @@ Spree::Core::Engine.routes.prepend do
       end
     end
   end
-#  match "/admin/products/:id/variants/create_all" => "admin/variants#create_all"
+  #  match "/admin/products/:id/variants/create_all" => "admin/variants#create_all"
+  # non-restful checkout stuff
+  #get '/admin/products/:id/variants/create_all', :to => 'admin/variants#create_all', :as => :create_all_admin_product_variants
 end
 

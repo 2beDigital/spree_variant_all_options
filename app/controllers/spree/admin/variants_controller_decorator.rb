@@ -1,6 +1,7 @@
 Spree::Admin::VariantsController.class_eval do
+
   def create_all
-    @product = Spree::Product.find_by_permalink(params[:product_id])
+    @product = Spree::Product.find_by_slug(params[:product_id])
     options = []
 
     @product.option_types.each do |o|
@@ -29,14 +30,14 @@ Spree::Admin::VariantsController.class_eval do
 
 
   def remove_all
-    @product = Spree::Product.find_by_permalink(params[:product_id])
+    @product = Spree::Product.find_by_slug(params[:product_id])
     all_variants_excluding_master = @product.variants
     all_variants_excluding_master.destroy_all
     redirect_to admin_product_variants_url(@product)
   end
 
   def vprice_all
-    @product = Spree::Product.find_by_permalink(params[:product_id])
+    @product = Spree::Product.find_by_slug(params[:product_id])
     master_vprices = @product.master.volume_prices
 
     unless master_vprices.empty?
@@ -49,8 +50,7 @@ Spree::Admin::VariantsController.class_eval do
         end
       end
     end
-
-      redirect_to admin_product_variants_url(@product)
+    redirect_to admin_product_variants_url(@product)
   end
 
 
