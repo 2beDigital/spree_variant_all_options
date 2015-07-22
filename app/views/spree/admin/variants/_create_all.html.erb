@@ -1,9 +1,10 @@
-<li id="create_all" data-hook>
-  <%= link_to_with_icon('fire',t(:create_all), create_all_admin_product_variants_path , :class => 'button') %>
-</li>
-<li id="remove_all" data-hook>
-    <%= link_to_with_icon('trash',t(:remove_all), remove_all_admin_product_variants_path , :class => 'button') %>
-</li>
-<li id="vprize_all" data-hook>
-  <%= link_to_with_icon('fire',t(:vprice_all), vprice_all_admin_product_variants_path , :class => 'button') %>
-</li>
+<% content_for :page_actions do %>
+  <%= button_link_to(t(:create_all), create_all_admin_product_variants_path , {icon: 'plus-sign'} ) %>
+  <%= button_link_to(t(:remove_all), remove_all_admin_product_variants_path , {
+    class: 'btn-danger', 
+    icon: 'trash', 
+    'data-confirm' => Spree.t(:are_you_sure),
+    'data-action' => 'remove'
+  } ) %>
+  <%= button_link_to(t(:vprice_all), vprice_all_admin_product_variants_path , {icon: 'money'} ) %>
+<% end %>
