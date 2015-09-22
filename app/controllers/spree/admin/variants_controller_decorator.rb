@@ -4,7 +4,7 @@ Spree::Admin::VariantsController.class_eval do
     @product = Spree::Product.find_by_slug(params[:product_id])
     options = []
 
-    @product.option_types.each do |o|
+    @product.option_types.order(:position).each do |o|
       options << o.option_values.collect(&:id)
     end
 
