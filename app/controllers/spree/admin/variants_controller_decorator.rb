@@ -42,9 +42,9 @@ Spree::Admin::VariantsController.class_eval do
     all_variants_excluding_master.destroy_all
     redirect_to admin_product_variants_url(@product)
   end
-
-  def vprice_all
 =begin    
+  def vprice_all
+
     @product = Spree::Product.find_by_slug(params[:product_id])
     master_vprices = @product.master.volume_prices
 
@@ -59,9 +59,9 @@ Spree::Admin::VariantsController.class_eval do
       end
     end
     redirect_to admin_product_variants_url(@product)
-=end
+
     redirect_to admin_product_variants_url(@product)
   end
-
+=end
 
 end
