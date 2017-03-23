@@ -5,7 +5,7 @@ Spree::Core::Engine.add_routes do
         collection do
           get :create_all
           get :remove_all
-          get :vprice_all
+          #get :vprice_all
         end
       end
     end
